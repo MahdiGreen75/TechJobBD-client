@@ -20,14 +20,16 @@ import Login from './components/routes/Login';
 // import MyCart from './components/routes/MyCart';
 // import CartProdiver from './providers/CartProvider';
 import ErrorPage from './components/routes/ErrorPage';
+import FormValidationProvider from './providers/FormValidationProvider.jsx';
 // import SuccessMessage from './components/routes/SuccessMessage';
 // import EmailProvider from './providers/EmailProvider';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <ErrorPage></ErrorPage>,
+    // element: <p>hey</p>,
     element: <Home />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/login",
@@ -44,7 +46,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-            <RouterProvider router={router} />
+      <FormValidationProvider>
+        <RouterProvider router={router} />
+      </FormValidationProvider>
     </AuthProvider>
   </React.StrictMode>,
 )
