@@ -11,7 +11,8 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [appliedJobs, setAppliedJobs] = useState([]);
-    
+    const [applicantsCount, setApplicansCount] = useState([]);
+
     const userSignUp = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
@@ -44,13 +45,31 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/get-applied-jobs')
-            .then(res=>res.json())
-            .then(data=>{
+            .then(res => res.json())
+            .then(data => {
+                //applied jobs functionallity
                 const userEmail = user?.email;
-                const dataArr = data.map(item=>item[userEmail])
-                const arr = dataArr.filter(item=>Boolean(item))
+                const dataArr = data.map(item => item[userEmail])
+                const arr = dataArr.filter(item => Boolean(item))
+                //applicant's number functionallity
+                const dataValues = data.map(item => Object.values(item)[1]);
+                const counts = {};
+                for (const item of dataValues) {
+                    if (counts[item]) {
+                        counts[item]++;
+                    } else {
+                        counts[item] = 1;
+                    }
+                }
+                const result = {};
+                for (const key in counts) {
+                    if (counts[key] > 1) {
+                        result[key] = counts[key];
+                    }
+                }
+                setApplicansCount(result);
                 setAppliedJobs(arr);
             })
     }, [user])
@@ -62,7 +81,8 @@ const AuthProvider = ({ children }) => {
         signInWithOther,
         logIn,
         logOut,
-        appliedJobs
+        appliedJobs,
+        applicantsCount
     }
 
     return (

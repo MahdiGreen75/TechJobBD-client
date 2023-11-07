@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 
 const TableRow = (obj) => {
-    const { appliedJobs } = useContext(AuthContext);
-    const { job_poster_email, job_post_id, index, job_title, job_posting_date, application_deadline, salary_range, job_applicants_num } = obj;
+    const { appliedJobs, applicantsCount } = useContext(AuthContext);
+    const { job_poster_email, job_post_id, index, job_title, job_posting_date, application_deadline, salary_range } = obj;
     const { user } = useContext(AuthContext);
     const ViewDetailsObj = { ...obj };
-    console.log();
+   
     return (
         <>
             <tr className="bg-white border-b font-light">
@@ -17,7 +17,7 @@ const TableRow = (obj) => {
                 </th>
                 <td scope="row" className="px-6 py-4">
                     {/* make it functional later */}
-                    Admin 
+                    Admin
                 </td>
                 <td className="px-6 py-4">
                     {job_title}
@@ -32,7 +32,7 @@ const TableRow = (obj) => {
                     {salary_range}
                 </td>
                 <td className="px-6 py-4 text-center">
-                    {job_applicants_num}
+                    {applicantsCount[+job_post_id] ? applicantsCount[+job_post_id] : 0}
                 </td>
                 <td className="px-6 py-4 text-center">
                     {
@@ -50,7 +50,7 @@ const TableRow = (obj) => {
                                     ?
                                     <>
                                         <button className="text-white text-xs tracking-tighter bg-green-600 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md">
-                                             Applied
+                                            Applied
                                         </button>
                                     </>
                                     :
