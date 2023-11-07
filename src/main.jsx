@@ -21,16 +21,26 @@ import Login from './components/routes/Login';
 // import CartProdiver from './providers/CartProvider';
 import ErrorPage from './components/routes/ErrorPage';
 import FormValidationProvider from './providers/FormValidationProvider.jsx';
+import AllJobs from './components/routes/AllJobs.jsx';
+import AppliedJobs from './components/routes/AppliedJobs.jsx';
+import AddAJob from './components/routes/AddAJob.jsx';
+import MyJobs from './components/routes/MyJobs.jsx';
+import Blogs from './components/routes/Blogs.jsx';
+import WrapperOfHome from './components/routes/WrapperOfHome.jsx';
+import ViewDetails from './components/routes/ViewDetails.jsx';
 // import SuccessMessage from './components/routes/SuccessMessage';
 // import EmailProvider from './providers/EmailProvider';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    // element: <p>hey</p>,
     element: <Home />,
-    errorElement: <ErrorPage></ErrorPage>,
+    // errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/",
+        element: <WrapperOfHome></WrapperOfHome>
+      },
       {
         path: "/login",
         element: <Login></Login>
@@ -38,6 +48,30 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>
+      },
+      {
+        path: "/allJobs",
+        element: <AllJobs></AllJobs>
+      },
+      {
+        path: "/appliedJobs",
+        element: <AppliedJobs></AppliedJobs>
+      },
+      {
+        path: "/addAJob",
+        element: <AddAJob></AddAJob>
+      },
+      {
+        path: "/myJobs",
+        element: <MyJobs></MyJobs>
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>
+      },
+      {
+        path: "/view-details/:detailsId",
+        element: <ViewDetails></ViewDetails>
       }
     ]
   },

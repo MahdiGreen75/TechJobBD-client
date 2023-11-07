@@ -2,9 +2,11 @@ import { BsFacebook } from "react-icons/bs"
 import { RiTwitterXLine } from "react-icons/ri"
 import { FaInstagramSquare } from "react-icons/fa"
 import { FaLinkedin } from "react-icons/fa"
-import { BiLogoAdobe } from "react-icons/bi"
+import { RiHammerFill } from "react-icons/ri"
+import { useNavigate } from "react-router-dom"
 
 const Footer = () => {
+    const navigate = useNavigate();
     return (
         <div className='bg-slate-100 py-5'>
             <div>
@@ -31,9 +33,9 @@ const Footer = () => {
                 <span className="text-xs font-bold">
                     Copyright © 2023
                 </span>
-                <div className='flex items-center gap-1'>
-                    <span><BiLogoAdobe className='text-red-600 text-2xl'></BiLogoAdobe></span>
-                    <span className="text-xs ml-1 font-bold">AlphaMotors</span>
+                <div className='flex items-end' onClick={()=>{navigate("/")}}>
+                    <span><RiHammerFill className='text-red-500 text-3xl'></RiHammerFill></span>
+                    <span  className='text-red-500 text-sm font-bold -ml-2 -mb-[1.5px]'>echJobBD</span>
                 </div>
             </div>
         </div>

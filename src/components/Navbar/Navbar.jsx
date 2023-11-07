@@ -1,4 +1,4 @@
-import { BiLogoAdobe } from 'react-icons/bi';
+import { RiHammerFill } from 'react-icons/ri';
 import { MdOutlineMenu } from 'react-icons/md';
 import { IoCloseSharp } from 'react-icons/io5';
 import { NavLink } from 'react-router-dom';
@@ -35,12 +35,21 @@ const Navbar = () => {
         }
     }
 
+    const navLink = <>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to='/allJobs'>All Jobs</NavLink>
+        <NavLink to='/appliedJobs'>Applied Jobs</NavLink>
+        <NavLink to='/addAJob'>Add a Job</NavLink>
+        <NavLink to='/myJobs'>My Jobs</NavLink>
+        <NavLink to="/blogs">Blogs</NavLink>
+    </>
+
     return (
         <div className='mt-2'>
             <div className='flex justify-between items-center relative'>
-                <div className='flex items-center gap-1'>
-                    <span><BiLogoAdobe className='text-red-600 text-4xl'></BiLogoAdobe></span>
-                    <span>AlphaMotors</span>
+                <div className='flex items-end' onClick={() => { navigate("/") }}>
+                    <span><RiHammerFill className='text-red-500 text-3xl'></RiHammerFill></span>
+                    <span className='text-red-500 text-sm font-bold -ml-2 -mb-[1.5px]'>echJobBD</span>
                 </div>
                 <div className='flex items-center gap-1 text-sm '>
                     <div className=''>
@@ -57,18 +66,7 @@ const Navbar = () => {
                                     !toggleHamburger && <>
                                         <nav className='absolute z-50 top-12 right-0 bg-blue-500 p-4 rounded-md mr-1 mt-2 duration-500 drop-shadow-2xl'>
                                             <nav id="sidebar" className='space-y-2 text-xs text-white font-semibold flex flex-col'>
-
-                                                <NavLink to="/">Home</NavLink>
-
-
-                                                <NavLink to={user ? `/addProduct` : `/login`}>Add Product</NavLink>
-
-
-                                                <NavLink to={user ? `/myCart` : `/login`}>My Cart</NavLink>
-
-
-                                                <NavLink to="/signup">Register</NavLink>
-
+                                                {navLink}
                                             </nav>
                                         </nav>
                                     </>
@@ -77,18 +75,7 @@ const Navbar = () => {
                         </div>
                         <nav className='hidden sm:block'>
                             <nav id="sidebar" className='flex gap-5 '>
-
-                                <NavLink to="/">Home</NavLink>
-
-
-                                <NavLink to={user ? `/addProduct` : `/login`}>Add Product</NavLink>
-
-
-                                <NavLink to={user ? `/myCart` : `/login`}>My Cart</NavLink>
-
-
-                                <NavLink to="/signup">Register</NavLink>
-
+                                {navLink}
                             </nav>
                         </nav>
                     </div>

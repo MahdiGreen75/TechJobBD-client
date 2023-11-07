@@ -10,7 +10,8 @@ const AuthProvider = ({ children }) => {
     //     const [location, setLocation] = useState("");
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [appliedJobs, setAppliedJobs] = useState([]);
+    
     const userSignUp = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
@@ -43,6 +44,16 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    useEffect(()=>{
+        fetch('http://localhost:5000/get-applied-jobs')
+            .then(res=>res.json())
+            .then(data=>{
+                const userEmail = user?.email;
+                const dataArr = data.map(item=>item[userEmail])
+                const arr = dataArr.filter(item=>Boolean(item))
+                setAppliedJobs(arr);
+            })
+    }, [user])
 
     const authInfo = {
         user,
@@ -50,7 +61,8 @@ const AuthProvider = ({ children }) => {
         userSignUp,
         signInWithOther,
         logIn,
-        logOut
+        logOut,
+        appliedJobs
     }
 
     return (
