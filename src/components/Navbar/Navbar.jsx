@@ -45,20 +45,20 @@ const Navbar = () => {
     </>
 
     const loginLogoutBtn = <>
-        <div className='px-2 py-1 bg-blue-500 hover:bg-blue-700 active:bg-blue-800 text-white flex gap-1 rounded-full'>
+        <div onClick={handleLoginAndOut} className='px-2 py-1 bg-blue-500 hover:bg-blue-700 active:bg-blue-800 text-white flex items-center gap-1 rounded-full'>
+            <span>
+                <button className='text-xs sm:text-sm font-bold'>
+                    {user ? "Log Out" : "Log In"}
+                </button>
+            </span>
             {user && <>
                 <div className='flex text-black text-sm font-bold gap-1'>
                     {user.photoURL && <>
-                        <img src={user.photoURL} className='w-6 rounded-full' title={user.displayName} />
+                        <img src={user.photoURL} className='w-6 rounded-full' title={user.displayName}/>
                     </>}
                 </div>
             </>
             }
-            <span>
-                <button onClick={handleLoginAndOut} className='text-xs sm:text-sm font-bold'>
-                    {user ? "Log Out" : "Log In"}
-                </button>
-            </span>
         </div>
     </>
 

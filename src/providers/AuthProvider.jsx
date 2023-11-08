@@ -11,9 +11,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [appliedJobs, setAppliedJobs] = useState([]);
-    const [applicantsCount, setApplicansCount] = useState([]);
-
-    console.log(user);
+    const [applicantsCount, setApplicansCount] = useState([]);  
 
     const userSignUp = (email, password) => {
         setLoading(true);
