@@ -49,11 +49,6 @@ const AddAJob = () => {
             active:bg-blue-900 duration-500 rounded 
             text-white outline-none w-full "/>
                         </form>
-                        <p className="text-sx font-semibold text-gray-800">
-                            Already have an account? <button>
-                                <span className="text-blue-400 hover:text-blue-600 active:text-blue-800 duration-300">Login</span>
-                            </button>
-                        </p>
                     </div>
 
                 </div>
