@@ -8,7 +8,7 @@ import { GoInfo } from 'react-icons/go';
 //react datepicker
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-
+import toast, { Toaster } from 'react-hot-toast';
 import "react-datepicker/dist/react-datepicker.css";
 
 const AddAJob = () => {
@@ -34,10 +34,61 @@ const AddAJob = () => {
 
     const onSubmitHandler = e => {
         e.preventDefault();
-        console.log(jobDescriptionRef.current.value);
-        console.log(companyNameRef.current.value);
-        console.log(radioRef1.current.checked, radioRef2.current.checked);
-        console.log(radioRefWorkHour1.current.checked, radioRefWorkHour2.current.checked);
+        const form = e.target;
+        const userName = form.userName?.value;
+        const jobTitle = form.jobTitle?.value;
+        //job posting date
+        const jobPostDate = `${+jobPostingDate.getFullYear()}-${+jobPostingDate.getMonth()}-${+jobPostingDate.getDate()}`;
+
+        //application deadline
+        const jobApplyDate = `${+applyDeadline.getFullYear()}-${+applyDeadline.getMonth()}-${+applyDeadline.getDate()}`;
+        const sallery = form.sallery?.value;
+        const teamSize = form.teamSize?.value;
+        const location = form.location?.value;
+        const eduDegree = form.eduDegree?.value;
+        const experienceLevel = form.experienceLevel?.value;
+        const jobDescription = jobDescriptionRef.current.value;
+        const companyName = companyNameRef.current.value;
+        const salleryIncrement = radioRef1.current.checked;
+        const workHours = radioRefWorkHour1.current.checked ? "Full Time" : "Part Time";
+        const requiredResponsibilities = responsesArr;
+        const extraBenifits = benifitsArr;
+        const requiredSkills = skillsArr;
+
+        // console.log(userName, jobTitle,jobPostDate,jobApplyDate,teamSize, location, eduDegree, sallery,experienceLevel,jobDescription,companyName,salleryIncrement,workHours, requiredResponsibilities, requiredSkills, extraBenifits);
+        const formData = {
+            "job_poster_email": user?.displayName,
+            "job_title": jobTitle,
+            "job_posting_date": jobPostDate,
+            "application_deadline": jobApplyDate,
+            "salary_range": sallery,
+            "description": jobDescription,
+            "yearly_salary_increment": salleryIncrement,
+            "location": location,
+            "required_skills": requiredSkills,
+            "experience_level": experienceLevel,
+            "education_requirements": eduDegree,
+            "benefits_package": extraBenifits,
+            "work_hours": workHours,
+            "responsibilities": requiredResponsibilities,
+            "team_size": teamSize,
+            "company_history": companyName
+        }
+
+        fetch("http://localhost:5000/my-jobs", {
+            method: "POST",
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.acknowledged) {
+                    toast.success("Congratulations, new job insertion is successfull");
+                }
+            })
+            form.reset();
     }
 
     //dynamic skills adding
@@ -80,8 +131,6 @@ const AddAJob = () => {
         setResponses([1]);
     }
 
-    // console.log(+jobPostingDate.getDate(), +jobPostingDate.getMonth(), +jobPostingDate.getFullYear());
-    // console.log(+applyDeadline.getDate(), +applyDeadline.getMonth(), +applyDeadline.getFullYear());
     return (
         <div>
             <div className="border border-transparent my-5"></div>
@@ -109,7 +158,7 @@ const AddAJob = () => {
                             <div>
                                 <label htmlFor="jobTitle">
                                     <p className="text-xs font-semibold text-gray-800">Job Title</p>
-                                    <input type="text" name="picLink" id="jobTitle" placeholder="Enter the job title. Like Web developer." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
+                                    <input type="text" name="jobTitle" id="jobTitle" placeholder="Enter the job title. Like Web developer." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
                                 </label>
                             </div>
                             <div>
@@ -271,7 +320,7 @@ const AddAJob = () => {
             </div>
 
             <div className="border border-transparent my-5"></div>
-
+            <Toaster />
         </div>
     );
 };
