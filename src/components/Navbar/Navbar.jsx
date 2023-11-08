@@ -54,7 +54,7 @@ const Navbar = () => {
             {user && <>
                 <div className='flex text-black text-sm font-bold gap-1'>
                     {user.photoURL && <>
-                        <img src={user.photoURL} className='w-6 rounded-full' title={user.displayName}/>
+                        <img src={user.photoURL} className='w-6 rounded-full'/>
                     </>}
                 </div>
             </>
