@@ -13,6 +13,8 @@ const AuthProvider = ({ children }) => {
     const [appliedJobs, setAppliedJobs] = useState([]);
     const [applicantsCount, setApplicansCount] = useState([]);
 
+    console.log(user);
+
     const userSignUp = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
