@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaRegHandPeace } from 'react-icons/fa';
 import { BsCalendar2Date } from 'react-icons/bs';
@@ -28,9 +28,14 @@ const AddAJob = () => {
     const reqSkillsRef = useRef();
     const benifitsRef = useRef();
     const responsesRef = useRef();
+    const uniqueId = useRef(1017);
     const [jobPostingDate, setJobPostingDate] = useState(new Date());
     const [applyDeadline, setApplyDeadline] = useState(new Date());
     const { user } = useContext(AuthContext);
+
+    useEffect(() => {
+        uniqueId.current = 1017; // Initialize on the first render
+    }, []);
 
     const onSubmitHandler = e => {
         e.preventDefault();
@@ -38,10 +43,11 @@ const AddAJob = () => {
         const userName = form.userName?.value;
         const jobTitle = form.jobTitle?.value;
         //job posting date
-        const jobPostDate = `${+jobPostingDate.getFullYear()}-${+jobPostingDate.getMonth()}-${+jobPostingDate.getDate()}`;
+        const jobPostDate = `${+jobPostingDate.getFullYear()}-${+jobPostingDate.getMonth() + 1}-${+jobPostingDate.getDate()}`;
 
         //application deadline
-        const jobApplyDate = `${+applyDeadline.getFullYear()}-${+applyDeadline.getMonth()}-${+applyDeadline.getDate()}`;
+        const jobApplyDate = `${+applyDeadline.getFullYear()}-${+applyDeadline.getMonth() + 1}-${+applyDeadline.getDate()}`;
+
         const sallery = form.sallery?.value;
         const teamSize = form.teamSize?.value;
         const location = form.location?.value;
@@ -54,27 +60,27 @@ const AddAJob = () => {
         const requiredResponsibilities = responsesArr;
         const extraBenifits = benifitsArr;
         const requiredSkills = skillsArr;
-
         // console.log(userName, jobTitle,jobPostDate,jobApplyDate,teamSize, location, eduDegree, sallery,experienceLevel,jobDescription,companyName,salleryIncrement,workHours, requiredResponsibilities, requiredSkills, extraBenifits);
         const formData = {
             "job_poster_email": user?.displayName,
             "job_title": jobTitle,
+            "job_post_id": uniqueId.current++,
             "job_posting_date": jobPostDate,
             "application_deadline": jobApplyDate,
             "salary_range": sallery,
             "description": jobDescription,
             "yearly_salary_increment": salleryIncrement,
             "location": location,
-            "required_skills": requiredSkills,
+            "required_skills": purifyTheArray(requiredSkills),
             "experience_level": experienceLevel,
             "education_requirements": eduDegree,
-            "benefits_package": extraBenifits,
+            "benefits_package": purifyTheArray(extraBenifits),
             "work_hours": workHours,
-            "responsibilities": requiredResponsibilities,
+            "responsibilities": purifyTheArray(requiredResponsibilities),
             "team_size": teamSize,
             "company_history": companyName
         }
-
+        console.log(formData);
         fetch("http://localhost:5000/my-jobs", {
             method: "POST",
             headers: {
@@ -84,19 +90,25 @@ const AddAJob = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data.acknowledged) {
+                if (data.acknowledged) {
                     toast.success("Congratulations, new job insertion is successfull");
                 }
             })
-            form.reset();
+        form.reset();
+    }
+
+
+    //utility functions
+    function purifyTheArray(array) {
+        return array.filter(item => item !== null && item !== undefined && item !== "");
     }
 
     //dynamic skills adding
-
+    console.log(skillsArr);
     const addSkills = () => {
         const value = reqSkillsRef.current?.value;
-        setSkills([...skills, 1])
         setSkillsArr([...skillsArr, value]);
+        setSkills([...skills, 1])
     }
 
     const doneAddingSkills = () => {
@@ -105,11 +117,11 @@ const AddAJob = () => {
         setSkills([1]);
     }
     // dynamic benifits adding
-
+    console.log(benifitsArr);
     const addBenifits = () => {
         const value = benifitsRef.current?.value;
-        setBenifits([...benifits, 1])
         setBenifitsArr([...benifitsArr, value]);
+        setBenifits([...benifits, 1])
     }
 
     const doneAddingBenifits = () => {
@@ -118,7 +130,7 @@ const AddAJob = () => {
         setBenifits([1]);
     }
     // dynamic responses adding
-
+    console.log(responsesArr);
     const addResponses = () => {
         const value = responsesRef.current?.value;
         setResponses([...responses, 1])
@@ -299,7 +311,7 @@ const AddAJob = () => {
                                         <label key={index + item} htmlFor="reqSkills" onClick={() => { setShowInfo(true); }}>
                                             <p className="text-xs font-semibold text-gray-800">Add Responsibilities for the job post</p>
                                             <div className="flex items-center gap-1">
-                                                <input ref={reqSkillsRef} type="text" name="reqSkills" id="reqSkills" placeholder="Enter job responsibilities one by one." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
+                                                <input ref={responsesRef} type="text" name="reqSkills" id="reqSkills" placeholder="Enter job responsibilities one by one." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
                                                 <span onClick={addResponses} className="flex items-center gap-1 p-2 bg-blue-500 rounded-md text-white text-xs hover:bg-blue-700 active:bg-blue-800 "><AiOutlinePlusCircle className="text-2xl"></AiOutlinePlusCircle></span>
                                                 <span onClick={doneAddingResponses} className="flex items-center gap-1 p-2 bg-blue-500 rounded-md text-white text-xs hover:bg-blue-700 active:bg-blue-800 "><IoCheckmarkDoneCircleOutline className="text-2xl"></IoCheckmarkDoneCircleOutline></span>
                                             </div>

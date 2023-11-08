@@ -8,7 +8,6 @@ const TableRow = (obj) => {
     const { job_poster_email, job_post_id, index, job_title, job_posting_date, application_deadline, salary_range } = obj;
     const { user } = useContext(AuthContext);
     const ViewDetailsObj = { ...obj };
-   
     return (
         <>
             <tr className="bg-white border-b font-light">
@@ -16,8 +15,7 @@ const TableRow = (obj) => {
                     {index + 1}
                 </th>
                 <td scope="row" className="px-6 py-4">
-                    {/* make it functional later */}
-                    Admin
+                    {user ? job_poster_email : "Admin"}
                 </td>
                 <td className="px-6 py-4">
                     {job_title}
@@ -38,7 +36,7 @@ const TableRow = (obj) => {
                     {
                         new Date(application_deadline).getTime() > Date.now()
                             ?
-                            (job_poster_email === user?.email)
+                            (user.displayName === job_poster_email)
                                 ?
                                 <>
                                     <button className="text-white text-xs tracking-tighter bg-pink-400 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md">
