@@ -1,14 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import TableRow from "../Tabs/TableRow/TableRow";
+import { AuthContext } from "../../providers/AuthProvider";
 // import { AuthContext } from "../../providers/AuthProvider";
 
 
 
 const MyJobs = () => {
+    const {user} = useContext(AuthContext);
     const [jobs, setJobs] = useState([]);
+    const url = `http://localhost:5000/get-my-jobs?email=${user?.email}`;
 
     useEffect(() => {
-        fetch("http://localhost:5000/get-my-jobs")
+        fetch(url)
             .then(res => res.json())
             .then(data => {
                 // const filtered = data.filter(item => appliedJobs.includes(item.job_post_id))

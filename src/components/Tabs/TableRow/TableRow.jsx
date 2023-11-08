@@ -36,7 +36,7 @@ const TableRow = (obj) => {
                     {
                         new Date(application_deadline).getTime() > Date.now()
                             ?
-                            (user.displayName === job_poster_email)
+                            (user?.displayName === job_poster_email)
                                 ?
                                 <>
                                     <button className="text-white text-xs tracking-tighter bg-pink-400 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md">

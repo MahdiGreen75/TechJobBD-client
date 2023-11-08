@@ -62,6 +62,8 @@ const AddAJob = () => {
         const requiredSkills = skillsArr;
         // console.log(userName, jobTitle,jobPostDate,jobApplyDate,teamSize, location, eduDegree, sallery,experienceLevel,jobDescription,companyName,salleryIncrement,workHours, requiredResponsibilities, requiredSkills, extraBenifits);
         const formData = {
+            "job_setter_name": userName,
+            "job_setter_email": user?.email,
             "job_poster_email": user?.displayName,
             "job_title": jobTitle,
             "job_post_id": uniqueId.current++,
