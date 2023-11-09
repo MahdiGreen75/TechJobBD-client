@@ -6,6 +6,7 @@ import Hybrid from '../Tabs/Hybrid/Hybrid';
 import PartTime from '../Tabs/PartTime/PartTime';
 import './stylesBanner.css'
 import Testimonial from '../Testimonial/Testimonial';
+import FAQs from '../FAQs/FAQs';
 const WrapperOfHome = () => {
     return (
         <>
@@ -41,6 +42,7 @@ const WrapperOfHome = () => {
                 </TabPanel>
             </Tabs>
             <Testimonial></Testimonial>
+            <FAQs></FAQs>
         </>
     );
 };
