@@ -12,15 +12,14 @@ const Footer = () => {
             <div>
                 <ul className="flex justify-evenly my-5 text-xs sm:text-sm md:text-base font-bold px-1">
                     <li>ABOUT US</li>
-                    <li>PRODUCTS</li>
                     <li>AWARDS</li>
                     <li>HELP</li>
                     <li>CONTACT</li>
                 </ul>
             </div>
             <div className="border bg-gray-600 mb-5"></div>
-            <div className="max-w-4xl mx-auto text-center px-1 font-medium">
-                AlphaMotor vehicles are known for their retro styling and innovative features. The Ace, for example, is a subcompact coupe with a sleek design and a range of up to 300 miles.
+            <div className="max-w-4xl mx-auto text-center px-1 font-medium text-xs">
+                TechJobBD - Your Gateway to Tech Careers. Explore limitless opportunities in the ever-evolving tech industry. Stay ahead with our latest job listings, insightful articles, and expert advice. Connect with us to fuel your tech journey.
             </div>
             <div className="flex items-center gap-2 justify-center my-5">
                 <BsFacebook className="text-blue-500 text-2xl"></BsFacebook>
@@ -33,9 +32,9 @@ const Footer = () => {
                 <span className="text-xs font-bold">
                     Copyright © 2023
                 </span>
-                <div className='flex items-end' onClick={()=>{navigate("/")}}>
+                <div className='flex items-end' onClick={() => { navigate("/") }}>
                     <span><RiHammerFill className='text-red-500 text-3xl'></RiHammerFill></span>
-                    <span  className='text-red-500 text-sm font-bold -ml-2 -mb-[1.5px]'>echJobBD</span>
+                    <span className='text-red-500 text-sm font-bold -ml-2 -mb-[1.5px]'>echJobBD</span>
                 </div>
             </div>
         </div>
