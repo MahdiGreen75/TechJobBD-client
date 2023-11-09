@@ -5,16 +5,24 @@ import TableRow from "../Tabs/TableRow/TableRow";
 
 const AllJobs = () => {
     const [jobs, setJobs] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         fetch("http://localhost:5000/all-jobs")
             .then(res => res.json())
             .then(data => setJobs(data))
     }, [])
+    //console.log(searchTerm);
 
     return (
         <div>
-
+            <div className=" w-full h-30">
+                <div className="w-full flex justify-center items-center my-5">
+                    <form>
+                        <input placeholder="Search job title here..." className="placeholder:italic outline-none rounded-sm shadow-lg border-2 p-2 text-xs " type="text" onChange={(e) => setSearchTerm(e.target.value)} />
+                    </form>
+                </div>
+            </div>
             <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-200">
@@ -64,7 +72,14 @@ const AllJobs = () => {
                                     <td><br /></td>
                                 </tr>
                                 :
-                                jobs.map((job, index) => <TableRow key={job._id} {...job} index={index}></TableRow>)
+                                jobs.filter(val => {
+                                    if (searchTerm === '') {
+                                        return val;
+                                    } else if (val.job_title.toLowerCase().includes(searchTerm.toLocaleLowerCase())) {
+                                        return val;
+                                    }
+                                })
+                                .map((job, index) => <TableRow key={job._id} {...job} index={index}></TableRow>)
                         }
                     </tbody>
                 </table>
