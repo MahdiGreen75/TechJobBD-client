@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+// import { AuthContext } from "../../providers/AuthProvider";
 import { FaRegHandPeace } from 'react-icons/fa';
 import { BsCalendar2Date } from 'react-icons/bs';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
@@ -8,10 +8,14 @@ import { GoInfo } from 'react-icons/go';
 //react datepicker
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-import toast, { Toaster } from 'react-hot-toast';
+// import toast, { Toaster } from 'react-hot-toast';
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../../providers/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const AddAJob = () => {
+const UpdateAJob = () => {
+    const navigate = useNavigate();
+    const location1 = useLocation();
     const [skills, setSkills] = useState([1]);
     const [responses, setResponses] = useState([1]);
     const [skillsArr, setSkillsArr] = useState([]);
@@ -32,6 +36,12 @@ const AddAJob = () => {
     const [jobPostingDate, setJobPostingDate] = useState(new Date());
     const [applyDeadline, setApplyDeadline] = useState(new Date());
     const { user } = useContext(AuthContext);
+
+    //destructuring the default values
+    const {
+        company_history, description, education_requirements, experience_level
+        , job_title, location, salary_range, team_size, _id,
+    } = location1.state;
 
     useEffect(() => {
         uniqueId.current = 1017; // Initialize on the first render
@@ -82,9 +92,9 @@ const AddAJob = () => {
             "team_size": teamSize,
             "company_history": companyName
         }
-        console.log(formData);
-        fetch("http://localhost:5000/my-jobs", {
-            method: "POST",
+        // console.log(formData);
+        fetch(`http://localhost:5000/user/${_id}`, {
+            method: "PATCH",
             headers: {
                 'content-type': "application/json"
             },
@@ -92,8 +102,8 @@ const AddAJob = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-                    toast.success("Congratulations, new job insertion is successfull");
+                if(data.modifiedCount) {
+                    navigate("/myJobs")
                 }
             })
         form.reset();
@@ -156,8 +166,7 @@ const AddAJob = () => {
                             Hey, {user?.displayName}!
                         </span>
                     </span>
-                    <span>Want to post  more job roles. </span>
-                    <span>Fill the form below.</span>
+                    <span>Let's update this job post.</span>
                 </h1>
                 <form className="space-y-2 w-[800px] mx-auto" onSubmit={onSubmitHandler}>
                     <div className="flex flex-col gap-5">
@@ -172,7 +181,7 @@ const AddAJob = () => {
                             <div>
                                 <label htmlFor="jobTitle">
                                     <p className="text-xs font-semibold text-gray-800">Job Title</p>
-                                    <input type="text" name="jobTitle" id="jobTitle" placeholder="Enter the job title. Like Web developer." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
+                                    <input type="text" defaultValue={job_title} name="jobTitle" id="jobTitle" placeholder="Enter the job title. Like Web developer." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
                                 </label>
                             </div>
                             <div>
@@ -202,31 +211,31 @@ const AddAJob = () => {
                             <div>
                                 <label htmlFor="sallery">
                                     <p className="text-xs font-semibold text-gray-800">Sallery</p>
-                                    <input type="text" name="sallery" id="sallery" placeholder="Enter the estimated sallery for the post." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
+                                    <input type="text" defaultValue={salary_range} name="sallery" id="sallery" placeholder="Enter the estimated sallery for the post." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
                                 </label>
                             </div>
                             <div>
                                 <label htmlFor="teamSize">
                                     <p className="text-xs font-semibold text-gray-800">Team Size</p>
-                                    <input type="number" name="teamSize" id="teamSize" placeholder="Total Employee in the team" className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
+                                    <input type="number" defaultValue={team_size} name="teamSize" id="teamSize" placeholder="Total Employee in the team" className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
                                 </label>
                             </div>
                             <div>
                                 <label htmlFor="location">
                                     <p className="text-xs font-semibold text-gray-800">Office Location</p>
-                                    <input type="text" name="location" id="location" placeholder="Enter the location of the company." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
+                                    <input type="text" defaultValue={location} name="location" id="location" placeholder="Enter the location of the company." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
                                 </label>
                             </div>
                             <div>
                                 <label htmlFor="eduDegree">
                                     <p className="text-xs font-semibold text-gray-800">Educational Requirements</p>
-                                    <input type="text" name="eduDegree" id="eduDegree" placeholder="Enter educational degree" className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
+                                    <input defaultValue={education_requirements} type="text" name="eduDegree" id="eduDegree" placeholder="Enter educational degree" className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
                                 </label>
                             </div>
                             <div>
                                 <label htmlFor="experienceLevel">
                                     <p className="text-xs font-semibold text-gray-800">Experience Level</p>
-                                    <input type="text" name="experienceLevel" id="experienceLevel" placeholder="Enter the location of the company." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
+                                    <input defaultValue={experience_level} type="text" name="experienceLevel" id="experienceLevel" placeholder="Enter the location of the company." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
                                 </label>
                             </div>
                             <div>
@@ -258,13 +267,13 @@ const AddAJob = () => {
                             <div>
                                 <label htmlFor="jobDescriptionRef">
                                     <p className="text-xs font-semibold text-gray-800">Write the job description</p>
-                                    <textarea placeholder="Try to make 50 words here!" ref={jobDescriptionRef} className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" name="jobDescriptionRef" id="jobDescriptionRef"></textarea>
+                                    <textarea defaultValue={description} placeholder="Try to make 50 words here!" ref={jobDescriptionRef} className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" name="jobDescriptionRef" id="jobDescriptionRef"></textarea>
                                 </label>
                             </div>
                             <div>
                                 <label htmlFor="companyNameRef">
                                     <p className="text-xs font-semibold text-gray-800">Write the Company name and history.</p>
-                                    <textarea ref={companyNameRef} placeholder="Like this format: CompanyName, is the trusted brand for international servers..." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" name="companyNameRef" id="companyNameRef"></textarea>
+                                    <textarea defaultValue={company_history} ref={companyNameRef} placeholder="Like this format: CompanyName, is the trusted brand for international servers..." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" name="companyNameRef" id="companyNameRef"></textarea>
                                 </label>
                             </div>
                         </div>
@@ -326,7 +335,7 @@ const AddAJob = () => {
                             </div>
                         </div>
                     </div>
-                    <input type="submit" value="Add a job" className="px-4 py-2 
+                    <input type="submit" value="Update" className="px-4 py-2 
             bg-blue-500 hover:bg-blue-700 
             active:bg-blue-900 duration-500 rounded 
             text-white outline-none w-full "/>
@@ -334,9 +343,8 @@ const AddAJob = () => {
             </div>
 
             <div className="border border-transparent my-5"></div>
-            <Toaster />
         </div>
     );
 };
 
-export default AddAJob;
+export default UpdateAJob;

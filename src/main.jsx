@@ -28,6 +28,7 @@ import MyJobs from './components/routes/MyJobs.jsx';
 import Blogs from './components/routes/Blogs.jsx';
 import WrapperOfHome from './components/routes/WrapperOfHome.jsx';
 import ViewDetails from './components/routes/ViewDetails.jsx';
+import UpdateAJob from './components/routes/UpdateAJob.jsx';
 // import SuccessMessage from './components/routes/SuccessMessage';
 // import EmailProvider from './providers/EmailProvider';
 
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/view-details/:detailsId",
         element: <ViewDetails></ViewDetails>
+      },
+      {
+        path: "/update/:updateId",
+        element: <UpdateAJob></UpdateAJob>
       }
     ]
   },

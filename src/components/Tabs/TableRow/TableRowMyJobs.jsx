@@ -5,80 +5,84 @@ import { Link } from "react-router-dom";
 
 const TableRowMyJobs = (obj) => {
     const { appliedJobs, applicantsCount } = useContext(AuthContext);
-    const { job_poster_email,_id, job_post_id, index, job_title, job_posting_date, application_deadline, salary_range, handleDelete } = obj;
+    const { benefits_package, company_history, description, education_requirements, experience_level
+        , job_setter_email, job_title, location, required_skills, responsibilities, salary_range, team_size, work_hours, yearly_salary_increment, job_poster_email, _id, job_post_id, index, job_posting_date, application_deadline, handleDelete } = obj;
     const { user } = useContext(AuthContext);
     const ViewDetailsObj = { ...obj };
-    // console.log(_id)
+    // console.log(obj);
     return (
-    
-            <tr className="bg-white border-b font-light">
-                <th scope="row" className="px-6 py-4 text-center">
-                    {index + 1}
-                </th>
-                <td scope="row" className="px-6 py-4">
-                    {user ? job_poster_email : "Admin"}
-                </td>
-                <td className="px-6 py-4">
-                    {job_title}
-                </td>
-                <td className="px-6 py-4">
-                    {job_posting_date}
-                </td>
-                <td className="px-6 py-4">
-                    {application_deadline}
-                </td>
-                <td className="px-6 py-4">
-                    {salary_range}
-                </td>
-                <td className="px-6 py-4 text-center">
-                    {applicantsCount[+job_post_id] ? applicantsCount[+job_post_id] : 0}
-                </td>
-                <td className="px-6 py-4 text-center">
-                    {
-                        new Date(application_deadline).getTime() > Date.now()
+
+        <tr className="bg-white border-b font-light">
+            <th scope="row" className="px-6 py-4 text-center">
+                {index + 1}
+            </th>
+            <td scope="row" className="px-6 py-4">
+                {user ? job_poster_email : "Admin"}
+            </td>
+            <td className="px-6 py-4">
+                {job_title}
+            </td>
+            <td className="px-6 py-4">
+                {job_posting_date}
+            </td>
+            <td className="px-6 py-4">
+                {application_deadline}
+            </td>
+            <td className="px-6 py-4">
+                {salary_range}
+            </td>
+            <td className="px-6 py-4 text-center">
+                {applicantsCount[+job_post_id] ? applicantsCount[+job_post_id] : 0}
+            </td>
+            <td className="px-6 py-4 text-center">
+                {
+                    new Date(application_deadline).getTime() > Date.now()
+                        ?
+                        (user?.displayName === job_poster_email)
                             ?
-                            (user?.displayName === job_poster_email)
+                            <>
+                                <button className="text-white text-xs tracking-tighter bg-pink-400 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md">
+                                    Own Post
+                                </button>
+                            </>
+                            :
+                            (appliedJobs.includes(job_post_id))
                                 ?
                                 <>
-                                    <button className="text-white text-xs tracking-tighter bg-pink-400 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md">
-                                        Own Post
+                                    <button className="text-white text-xs tracking-tighter bg-green-600 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md">
+                                        Applied
                                     </button>
                                 </>
                                 :
-                                (appliedJobs.includes(job_post_id))
-                                    ?
-                                    <>
-                                        <button className="text-white text-xs tracking-tighter bg-green-600 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md">
-                                            Applied
-                                        </button>
-                                    </>
-                                    :
-                                    <Link to={`/view-details/${job_post_id}`} state={ViewDetailsObj}>
-                                        <button className="text-white text-xs tracking-tighter bg-blue-400 px-3 py-1 rounded-md font-bold hover:bg-blue-600 active:bg-blue-800">
-                                            Details
-                                        </button>
-                                    </Link>
-                            :
-                            <button className="text-white text-xs tracking-tighter bg-orange-400 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md font-bold80">
-                                Timeout
-                            </button>
-                    }
-                </td>
-                <td className="text-center">
-                    <Link to={`/view-details/${job_post_id}`} state={ViewDetailsObj}>
-                        <button className="text-white text-xs tracking-tighter bg-blue-400 px-3 py-1 rounded-md font-bold hover:bg-blue-600 active:bg-blue-800">
-                            Update
+                                <Link to={`/view-details/${job_post_id}`} state={ViewDetailsObj}>
+                                    <button className="text-white text-xs tracking-tighter bg-blue-400 px-3 py-1 rounded-md font-bold hover:bg-blue-600 active:bg-blue-800">
+                                        Details
+                                    </button>
+                                </Link>
+                        :
+                        <button className="text-white text-xs tracking-tighter bg-orange-400 font-bold opacity-70 cursor-not-allowed px-3 py-1 rounded-md font-bold80">
+                            Timeout
                         </button>
-                    </Link>
-                    <div className="border border-transparent"></div>
-
-                    <button onClick={() => handleDelete(_id)} className="text-white text-xs tracking-tighter bg-blue-400 px-3 py-1 rounded-md font-bold hover:bg-blue-600 active:bg-blue-800">
-                        Delete
+                }
+            </td>
+            <td className="text-center">
+                <Link to={`/update/${_id}`} state={{
+                    benefits_package, company_history, description, education_requirements, experience_level
+                    , job_setter_email, job_title, location, required_skills, responsibilities, salary_range, team_size, work_hours, yearly_salary_increment, job_poster_email, _id, job_post_id
+                }}>
+                    <button className="text-white text-xs tracking-tighter bg-blue-400 px-3 py-1 rounded-md font-bold hover:bg-blue-600 active:bg-blue-800">
+                        Update
                     </button>
+                </Link>
+                <div className="border border-transparent"></div>
 
-                </td>
-            </tr>
-        
+                <button onClick={() => handleDelete(_id)} className="text-white text-xs tracking-tighter bg-blue-400 px-3 py-1 rounded-md font-bold hover:bg-blue-600 active:bg-blue-800">
+                    Delete
+                </button>
+
+            </td>
+        </tr>
+
     );
 };
 
