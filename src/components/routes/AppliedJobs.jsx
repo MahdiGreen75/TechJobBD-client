@@ -9,6 +9,10 @@ const AppliedJobs = () => {
     const { appliedJobs } = useContext(AuthContext);
     const [jobs, setJobs] = useState([]);
 
+    useEffect(()=>{
+        document.title = "TechJobBD | Applied Jobs"
+    },[])
+
     useEffect(() => {
         fetch("http://localhost:5000/all-jobs")
             .then(res => res.json())

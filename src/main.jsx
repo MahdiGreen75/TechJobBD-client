@@ -29,6 +29,7 @@ import Blogs from './components/routes/Blogs.jsx';
 import WrapperOfHome from './components/routes/WrapperOfHome.jsx';
 import ViewDetails from './components/routes/ViewDetails.jsx';
 import UpdateAJob from './components/routes/UpdateAJob.jsx';
+import PrivateRoute from './components/routes/PrivateRoute.jsx';
 // import SuccessMessage from './components/routes/SuccessMessage';
 // import EmailProvider from './providers/EmailProvider';
 
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    // errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -56,15 +57,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/appliedJobs",
-        element: <AppliedJobs></AppliedJobs>
+        element: <PrivateRoute><AppliedJobs></AppliedJobs></PrivateRoute>
       },
       {
         path: "/addAJob",
-        element: <AddAJob></AddAJob>
+        element: <PrivateRoute><AddAJob></AddAJob></PrivateRoute>
       },
       {
         path: "/myJobs",
-        element: <MyJobs></MyJobs>
+        element: <PrivateRoute><MyJobs></MyJobs></PrivateRoute>
       },
       {
         path: "/blogs",

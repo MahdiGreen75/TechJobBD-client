@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import { FaBlogger } from "react-icons/fa";
 
 
 const Blogs = () => {
+
+    useEffect(()=>{
+        document.title = "TechJobBD | Blogs"
+    },[])
+
     return (
         <div>
             <h1 className="font-semibold text-2xl  border-b-2 pb-1 flex items-center gap-1">

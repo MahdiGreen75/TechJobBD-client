@@ -1,21 +1,25 @@
 import { ImCross } from 'react-icons/im';
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../providers/AuthProvider';
 import { FormValidationContext } from '../../providers/FormValidationProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
+    const desiredPath = useLocation();
+    const navigate = useNavigate();
     const [validataion, setValidation] = useContext(FormValidationContext)
     const { logIn, signInWithOther } = useContext(AuthContext);
     const provider = new GoogleAuthProvider();
+    // console.log(desiredPath.state.from.pathname);
 
     const handleGoogleSignIn = () => {
         signInWithOther(provider)
             .then(() => {
                 console.log("Google sign in successful.")
                 toast.success('Login successful!')
+                navigate(`${desiredPath.state.from.pathname}`)
             })
             .catch(() => {
                 setValidation("Can't sign in with google!")

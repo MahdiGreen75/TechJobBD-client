@@ -14,6 +14,9 @@ const AllJobs = () => {
             .then(data => setJobs(data))
     }, [])
     //console.log(searchTerm);
+    useEffect(()=>{
+        document.title = "TechJobBD | All Jobs"
+    },[])
 
     return (
         <div>

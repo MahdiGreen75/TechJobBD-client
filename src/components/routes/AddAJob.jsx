@@ -37,6 +37,10 @@ const AddAJob = () => {
         uniqueId.current = 1017; // Initialize on the first render
     }, []);
 
+    useEffect(()=>{
+        document.title = "TechJobBD | Add a Job"
+    },[])
+
     const onSubmitHandler = e => {
         e.preventDefault();
         const form = e.target;

@@ -2,9 +2,13 @@ import { Outlet } from "react-router-dom";
 
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import { useEffect } from "react";
 
 
 const Home = () => {
+    useEffect(()=>{
+        document.title = "TechJobBD | Home"
+    },[])
     return (
         <div className="mx-3 sm:mx-0">
             <div className="sm:w-full sm:px-2 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">

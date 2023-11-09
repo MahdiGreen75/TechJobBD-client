@@ -26,6 +26,10 @@ const MyJobs = () => {
             })
     }
 
+    useEffect(()=>{
+        document.title = "TechJobBD | My Jobs"
+    },[])
+
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
