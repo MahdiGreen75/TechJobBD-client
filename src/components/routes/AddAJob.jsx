@@ -149,7 +149,7 @@ const AddAJob = () => {
         <div>
             <div className="border border-transparent my-5"></div>
             {/*SignUp Form  */}
-            <div className="h-full w-min mx-auto p-5 bg-white border rounded-md space-y-5 shadow-xl">
+            <div className="h-full w-full xl:w-[900px] mx-auto  p-5 bg-white border rounded-md space-y-5 shadow-xl">
                 <h1 className="text-center font-semibold text-base flex flex-col items-center">
                     <span className="flex justify-center gap-1 ">
                         <FaRegHandPeace className="text-2xl text-orange-400"></FaRegHandPeace><span>
@@ -159,7 +159,7 @@ const AddAJob = () => {
                     <span>Want to post  more job roles. </span>
                     <span>Fill the form below.</span>
                 </h1>
-                <form className="space-y-2 w-[800px] mx-auto" onSubmit={onSubmitHandler}>
+                <form className="space-y-2 w-full mx-auto" onSubmit={onSubmitHandler}>
                     <div className="flex flex-col gap-5">
                         {/* static portion of the form */}
                         <div className="space-y-3 p-5 border rounded-md shadow-xl">

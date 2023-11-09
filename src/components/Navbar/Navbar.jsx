@@ -45,7 +45,7 @@ const Navbar = () => {
     </>
 
     const loginLogoutBtn = <>
-        <div onClick={handleLoginAndOut} className='px-2 py-1 bg-blue-500 hover:bg-blue-700 active:bg-blue-800 text-white flex items-center gap-1 rounded-full'>
+        <div onClick={handleLoginAndOut} className='px-2 py-1 ml-2 bg-blue-500 hover:bg-blue-700 active:bg-blue-800 text-white flex items-center gap-1 rounded-full'>
             <span>
                 <button className='text-xs sm:text-sm font-bold'>
                     {user ? "Log Out" : "Log In"}
@@ -63,7 +63,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className='mt-2'>
+        <div className='my-4 md:border-2 md:p-3 md:rounded-full'>
             <div className='flex justify-between items-center relative'>
                 <div className='flex items-end' onClick={() => { navigate("/") }}>
                     <span><RiHammerFill className='text-red-500 text-3xl'></RiHammerFill></span>
