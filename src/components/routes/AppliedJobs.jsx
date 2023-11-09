@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import TableRow from "../Tabs/TableRow/TableRow";
 import { AuthContext } from "../../providers/AuthProvider";
+import { LiaChevronRightSolid } from "react-icons/lia";
 
 
 
@@ -21,9 +22,9 @@ const AppliedJobs = () => {
     return (
         <div>
 
-            <div className="relative overflow-x-auto">
+            <div className="relative overflow-x-auto border-2 mt-10 mb-5 rounded-xl drop-shadow-2xl">
                 <table className="w-full text-sm text-left text-gray-500">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-200">
+                    <thead className="text-xs text-white uppercase bg-blue-500">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 Order
@@ -76,7 +77,9 @@ const AppliedJobs = () => {
                     </tbody>
                 </table>
             </div>
-
+            <div className="w-full flex justify-center items-center lg:hidden">
+                <span className="flex items-center bg-white border-2 w-fit px-2 py-1"><LiaChevronRightSolid className="text-base text-gray-400"></LiaChevronRightSolid><span className="text-xs text-gray-400 italic">Scroll to right to see full details</span></span>
+            </div>
         </div>
     );
 };
