@@ -106,7 +106,7 @@ const AddAJob = () => {
     }
 
     //dynamic skills adding
-    console.log(skillsArr);
+    // console.log(skillsArr);
     const addSkills = () => {
         const value = reqSkillsRef.current?.value;
         setSkillsArr([...skillsArr, value]);
@@ -119,7 +119,7 @@ const AddAJob = () => {
         setSkills([1]);
     }
     // dynamic benifits adding
-    console.log(benifitsArr);
+    // console.log(benifitsArr);
     const addBenifits = () => {
         const value = benifitsRef.current?.value;
         setBenifitsArr([...benifitsArr, value]);
@@ -132,7 +132,7 @@ const AddAJob = () => {
         setBenifits([1]);
     }
     // dynamic responses adding
-    console.log(responsesArr);
+    // console.log(responsesArr);
     const addResponses = () => {
         const value = responsesRef.current?.value;
         setResponses([...responses, 1])
@@ -274,7 +274,7 @@ const AddAJob = () => {
                             <div className="p-5 border rounded-md shadow-lg ">
                                 {
                                     skills.map((item, index) => <>
-                                        <label key={index + item} htmlFor="reqSkills" onClick={() => { setShowInfo(true); }}>
+                                        <label key={index} htmlFor="reqSkills" onClick={() => { setShowInfo(true); }}>
                                             <p className="text-xs font-semibold text-gray-800">Required Skills</p>
                                             <div className="flex items-center gap-1">
                                                 <input ref={reqSkillsRef} type="text" name="reqSkills" id="reqSkills" placeholder="Enter Required skills one by one." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
@@ -292,7 +292,7 @@ const AddAJob = () => {
                             <div className="p-5 border rounded-md shadow-lg ">
                                 {
                                     benifits.map((item, index) => <>
-                                        <label key={index + item} htmlFor="reqSkills" onClick={() => { setShowInfo(true); }}>
+                                        <label key={index} htmlFor="reqSkills" onClick={() => { setShowInfo(true); }}>
                                             <p className="text-xs font-semibold text-gray-800">Set Extra Benifits</p>
                                             <div className="flex items-center gap-1">
                                                 <input ref={benifitsRef} type="text" name="reqSkills" id="reqSkills" placeholder="Enter benifits packages one by one." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />
@@ -310,7 +310,7 @@ const AddAJob = () => {
                             <div className="p-5 border rounded-md shadow-lg ">
                                 {
                                     responses.map((item, index) => <>
-                                        <label key={index + item} htmlFor="reqSkills" onClick={() => { setShowInfo(true); }}>
+                                        <label key={index} htmlFor="reqSkills" onClick={() => { setShowInfo(true); }}>
                                             <p className="text-xs font-semibold text-gray-800">Add Responsibilities for the job post</p>
                                             <div className="flex items-center gap-1">
                                                 <input ref={responsesRef} type="text" name="reqSkills" id="reqSkills" placeholder="Enter job responsibilities one by one." className="outline-none w-full p-2 rounded-md placeholder:text-gray-300 placeholder:text-sm text-sm required border-2" />

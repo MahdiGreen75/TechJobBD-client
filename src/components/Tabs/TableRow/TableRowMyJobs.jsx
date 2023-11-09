@@ -3,15 +3,14 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 
 
-const TableRow = (obj) => {
+const TableRowMyJobs = (obj) => {
     const { appliedJobs, applicantsCount } = useContext(AuthContext);
-    const { job_poster_email, job_post_id, index, job_title, job_posting_date, application_deadline, salary_range } = obj;
+    const { job_poster_email,_id, job_post_id, index, job_title, job_posting_date, application_deadline, salary_range, handleDelete } = obj;
     const { user } = useContext(AuthContext);
     const ViewDetailsObj = { ...obj };
-    
-
+    // console.log(_id)
     return (
-        <>
+    
             <tr className="bg-white border-b font-light">
                 <th scope="row" className="px-6 py-4 text-center">
                     {index + 1}
@@ -65,10 +64,22 @@ const TableRow = (obj) => {
                             </button>
                     }
                 </td>
-                
+                <td className="text-center">
+                    <Link to={`/view-details/${job_post_id}`} state={ViewDetailsObj}>
+                        <button className="text-white text-xs tracking-tighter bg-blue-400 px-3 py-1 rounded-md font-bold hover:bg-blue-600 active:bg-blue-800">
+                            Update
+                        </button>
+                    </Link>
+                    <div className="border border-transparent"></div>
+
+                    <button onClick={() => handleDelete(_id)} className="text-white text-xs tracking-tighter bg-blue-400 px-3 py-1 rounded-md font-bold hover:bg-blue-600 active:bg-blue-800">
+                        Delete
+                    </button>
+
+                </td>
             </tr>
-        </>
+        
     );
 };
 
-export default TableRow;
+export default TableRowMyJobs;

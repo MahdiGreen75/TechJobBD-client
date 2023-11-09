@@ -12,6 +12,7 @@ const AppliedJobs = () => {
         fetch("http://localhost:5000/all-jobs")
             .then(res => res.json())
             .then(data => {
+                // console.log(appliedJobs, data)
                 const filtered = data.filter(item => appliedJobs.includes(item.job_post_id))
                 setJobs(filtered);
             })
