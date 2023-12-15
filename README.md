@@ -16,4 +16,7 @@ Welcome to our Job Posting website! This platform is built using MongoDB, React,
 - **Dynamic Job Postings:** React ensures a smooth and dynamic job browsing experience.
 - **Responsive Design:** Tailwind CSS guarantees a fully responsive layout across devices.
 
-For more query, mail me at qarimahdi217@gmail.com
+## Further Query
+To know more mail me at: qarimahdi217@gmail.com  <br/>
+Site Live Link: https://techjobbd-3013b.web.app/  <br/>
+[Click here to go to server side code repo](https://github.com/MahdiGreen75/TechJobBD-server)
