@@ -9,14 +9,14 @@ const Footer = () => {
     const navigate = useNavigate();
     return (
         <div className='bg-slate-100 py-5'>
-            <div>
+            {/* <div>
                 <ul className="flex justify-evenly my-5 text-xs sm:text-sm md:text-base font-bold px-1">
                     <li>ABOUT US</li>
                     <li>AWARDS</li>
                     <li>HELP</li>
                     <li>CONTACT</li>
                 </ul>
-            </div>
+            </div> */}
             <div className="border bg-gray-600 mb-5"></div>
             <div className="max-w-4xl mx-auto text-center px-1 font-medium text-xs">
                 TechJobBD - Your Gateway to Tech Careers. Explore limitless opportunities in the ever-evolving tech industry. Stay ahead with our latest job listings, insightful articles, and expert advice. Connect with us to fuel your tech journey.
