@@ -30,6 +30,7 @@ import WrapperOfHome from './components/routes/WrapperOfHome.jsx';
 import ViewDetails from './components/routes/ViewDetails.jsx';
 import UpdateAJob from './components/routes/UpdateAJob.jsx';
 import PrivateRoute from './components/routes/PrivateRoute.jsx';
+import AddBlog from './components/routes/AddBlog.jsx';
 // import SuccessMessage from './components/routes/SuccessMessage';
 // import EmailProvider from './providers/EmailProvider';
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <WrapperOfHome></WrapperOfHome>
+      },
+      {
+        path: "/add-blog",
+        element: <AddBlog></AddBlog>
       },
       {
         path: "/login",

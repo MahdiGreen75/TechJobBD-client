@@ -6,6 +6,7 @@ import Hybrid from '../Tabs/Hybrid/Hybrid';
 import PartTime from '../Tabs/PartTime/PartTime';
 import './stylesBanner.css'
 import Testimonial from '../Testimonial/Testimonial';
+import { GiFireFlower } from "react-icons/gi";
 import FAQs from '../FAQs/FAQs';
 const WrapperOfHome = () => {
     return (
@@ -14,7 +15,7 @@ const WrapperOfHome = () => {
                 <h1 className='text-3xl font-bold'>TechJobBd, Connecting Top Tech Professionals</h1>
                 <p className='text-sm font-semibold w-full lg:w-96 md:w-80 sm:w-full mx-auto'>Unlock the potential of your tech career with TechTalent Hub! Discover a world of limitless opportunities as we bridge the gap between top-notch tech talent and cutting-edge job postings.</p>
                 <div className="w-full flex justify-center items-center my-5">
-                    <span className='italic font-extrabold px-2 border-t-4 border-b-4 border-red-700'>Check out our new features</span>
+                    <span className='italic font-extrabold px-2 border-t-4 border-b-4 border-red-700 flex gap-1'><GiFireFlower className='text-orange-400 text-2xl'></GiFireFlower>Check out our new blog section<GiFireFlower className='text-orange-400 text-2xl'></GiFireFlower></span>
                 </div>
             </div>
             <h1 className='text-xl font-bold text-center my-1'>Job Category</h1>

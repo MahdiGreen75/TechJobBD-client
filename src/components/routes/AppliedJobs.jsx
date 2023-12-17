@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import TableRow from "../Tabs/TableRow/TableRow";
 import { AuthContext } from "../../providers/AuthProvider";
 import { LiaChevronRightSolid } from "react-icons/lia";
+import { useNavigate } from "react-router-dom";
 
 
 
 const AppliedJobs = () => {
+   
     const { appliedJobs } = useContext(AuthContext);
     const [jobs, setJobs] = useState([]);
 
