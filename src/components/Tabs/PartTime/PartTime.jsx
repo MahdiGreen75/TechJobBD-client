@@ -7,7 +7,7 @@ const PartTime = () => {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/part-time")
+        fetch("https://badluck-server.vercel.app/part-time")
             .then(res => res.json())
             .then(data => setJobs(data))
     }, [])

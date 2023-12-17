@@ -87,7 +87,7 @@ const AddAJob = () => {
             "company_history": companyName
         }
         console.log(formData);
-        fetch("http://localhost:5000/my-jobs", {
+        fetch("https://badluck-server.vercel.app/my-jobs", {
             method: "POST",
             headers: {
                 'content-type': "application/json"

@@ -7,7 +7,7 @@ const Hybrid = () => {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/hybrid")
+        fetch("https://badluck-server.vercel.app/hybrid")
             .then(res => res.json())
             .then(data => setJobs(data))
     }, [])

@@ -16,7 +16,7 @@ const AppliedJobs = () => {
     },[])
 
     useEffect(() => {
-        fetch("http://localhost:5000/all-jobs")
+        fetch("https://badluck-server.vercel.app/all-jobs")
             .then(res => res.json())
             .then(data => {
                 // console.log(appliedJobs, data)

@@ -16,7 +16,7 @@ const AddBlog = () => {
         const obj = { title, blogPara, userName, userEmail };
         console.log(obj);
         //sending the post request.
-        fetch(`http://localhost:5000/post-blog`, {
+        fetch(`https://badluck-server.vercel.app/post-blog`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

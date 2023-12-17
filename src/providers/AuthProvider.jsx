@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:5000/get-applied-jobs')
+        fetch('https://badluck-server.vercel.app/get-applied-jobs')
             .then(res => res.json())
             .then(data => {
                 //applied jobs functionallity

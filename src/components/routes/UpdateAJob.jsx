@@ -97,7 +97,7 @@ const UpdateAJob = () => {
             "company_history": companyName
         }
         // console.log(formData);
-        fetch(`http://localhost:5000/user/${_id}`, {
+        fetch(`https://badluck-server.vercel.app/user/${_id}`, {
             method: "PATCH",
             headers: {
                 'content-type': "application/json"

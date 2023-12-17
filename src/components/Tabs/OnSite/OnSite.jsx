@@ -7,7 +7,7 @@ const OnSite = () => {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/on-site")
+        fetch("https://badluck-server.vercel.app/on-site")
             .then(res => res.json())
             .then(data => setJobs(data))
     }, [])

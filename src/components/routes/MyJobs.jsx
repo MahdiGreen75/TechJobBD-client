@@ -9,10 +9,10 @@ import { LiaChevronRightSolid } from 'react-icons/lia';
 const MyJobs = () => {
     const { user } = useContext(AuthContext);
     const [jobs, setJobs] = useState([]);
-    const url = `http://localhost:5000/get-my-jobs?email=${user?.email}`;
+    const url = `https://badluck-server.vercel.app/get-my-jobs?email=${user?.email}`;
 
     const handleDelete = (_id) => {
-        fetch(`http://localhost:5000/user/${_id}`, {
+        fetch(`https://badluck-server.vercel.app/user/${_id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

@@ -9,7 +9,7 @@ const AllJobs = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        fetch("http://localhost:5000/all-jobs")
+        fetch("https://badluck-server.vercel.app/all-jobs")
             .then(res => res.json())
             .then(data => setJobs(data))
     }, [])

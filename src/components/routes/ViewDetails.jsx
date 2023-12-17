@@ -28,7 +28,7 @@ const ViewDetails = () => {
 
     const handleApply = () => {
         if (clickOnce) {
-            fetch("http://localhost:5000/applied-jobs", {
+            fetch("https://badluck-server.vercel.app/applied-jobs", {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

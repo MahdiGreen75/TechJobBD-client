@@ -12,7 +12,7 @@ const Blogs = () => {
     }, [])
 
     useEffect(() => {
-        fetch("http://localhost:5000/get-all-blogs")
+        fetch("https://badluck-server.vercel.app/get-all-blogs")
             .then(res => res.json())
             .then(data => setValue(data))
     }, [])

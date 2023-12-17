@@ -7,7 +7,7 @@ const Remote = () => {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/remote")
+        fetch("https://badluck-server.vercel.app/remote")
             .then(res => res.json())
             .then(data => setJobs(data))
     }, [])
